@@ -1,0 +1,128 @@
+prompts:
+  rag/answer_generation:
+    version: "1.0.0"
+    description: "Стандартный RAG промпт для генерации ответов"
+    parameters:
+      - name: context
+        type: string
+        required: true
+      - name: question
+        type: string
+        required: true
+      - name: conversation_history
+        type: list
+        required: false
+      - name: max_sentences
+        type: integer
+        required: false
+        default: 3
+
+  rag/answer_with_citations:
+    version: "1.0.0"
+    description: "RAG промпт с инструкцией по цитированию источников"
+    parameters:
+      - name: context
+        type: string
+        required: true
+      - name: question
+        type: string
+        required: true
+      - name: conversation_history
+        type: list
+        required: false
+      - name: max_sentences
+        type: integer
+        required: false
+        default: 3
+
+  rag/direct_llm:
+    version: "1.0.0"
+    description: "Промпт для прямого ответа LLM без контекста документов"
+    parameters:
+      - name: question
+        type: string
+        required: true
+      - name: conversation_history
+        type: list
+        required: false
+      - name: max_sentences
+        type: integer
+        required: false
+        default: 3
+
+  grading/document_relevance:
+    version: "1.0.0"
+    description: "Оценка релевантности документа вопросу"
+    parameters:
+      - name: question
+        type: string
+        required: true
+      - name: document
+        type: string
+        required: true
+
+  grading/documents_relevance_check:
+    version: "1.0.0"
+    description: "Проверка релевантности набора документов через LLM (да/нет)"
+    parameters:
+      - name: question
+        type: string
+        required: true
+      - name: documents
+        type: list
+        required: true
+
+  grading/hallucination_check:
+    version: "1.0.0"
+    description: "Проверка на галлюцинации в ответе"
+    parameters:
+      - name: context
+        type: string
+        required: true
+      - name: answer
+        type: string
+        required: true
+
+  grading/faithfulness_check:
+    version: "1.0.0"
+    description: "Проверка опирается ли ответ на контекст (да/нет)"
+    parameters:
+      - name: context
+        type: string
+        required: true
+      - name: answer
+        type: string
+        required: true
+
+  grading/no_info_check:
+    version: "1.0.0"
+    description: "Проверка дал ли LLM полезный ответ или написал что нет информации"
+    parameters:
+      - name: question
+        type: string
+        required: true
+      - name: context
+        type: string
+        required: true
+      - name: answer
+        type: string
+        required: true
+
+  grading/answer_quality:
+    version: "1.0.0"
+    description: "Оценка качества ответа"
+    parameters:
+      - name: question
+        type: string
+        required: true
+      - name: answer
+        type: string
+        required: true
+
+  routing/query_classification:
+    version: "1.0.0"
+    description: "Классификация запроса для маршрутизации"
+    parameters:
+      - name: query
+        type: string
+        required: true

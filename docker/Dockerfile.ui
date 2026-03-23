@@ -1,0 +1,22 @@
+# ============================================
+# UI — лёгкий Streamlit контейнер
+# ============================================
+FROM python:3.12-slim
+
+WORKDIR /app
+
+# Устанавливаем только нужные пакеты для UI
+RUN pip install --no-cache-dir streamlit httpx
+
+# Копируем UI
+COPY src/interfaces/ui/ src/interfaces/ui/
+
+ENV PYTHONUNBUFFERED=1
+ENV API_URL=http://api:8000
+
+EXPOSE 8501
+
+CMD ["streamlit", "run", "src/interfaces/ui/streamlit_app.py", \
+     "--server.port=8501", \
+     "--server.address=0.0.0.0", \
+     "--server.headless=true"]

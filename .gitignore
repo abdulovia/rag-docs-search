@@ -328,3 +328,13 @@ http-client.private.env.json
 
 # Github Copilot persisted session migrations, see: https://github.com/microsoft/copilot-intellij-feedback/issues/712#issuecomment-3322062215
 .idea/**/copilot.data.migration.*.xml
+
+Local_RAG_Agent_01/
+
+# Project specific
+db/
+data/
+logs/
+*.db
+*.faiss
+*.pkl
